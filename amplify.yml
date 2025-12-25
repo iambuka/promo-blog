@@ -7,7 +7,8 @@ frontend:
     build:
       commands:
         - npm run build
-        - echo "Build output is in 'out' directory"
+        - mkdir -p .next/standalone
+        - echo '{"version":1,"config":{},"appDir":false,"files":[],"ignore":[]}' > .next/required-server-files.json
   artifacts:
     baseDirectory: out
     files:
@@ -16,17 +17,3 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
-applications:
-  - frontend:
-      buildPath: /
-      buildSpec: |
-        version: 1
-        frontend:
-          phases:
-            build:
-              commands:
-                - npm run build
-          artifacts:
-            baseDirectory: out
-            files:
-              - '**/*'
