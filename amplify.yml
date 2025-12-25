@@ -7,6 +7,7 @@ frontend:
     build:
       commands:
         - npm run build
+        - echo "Build output is in 'out' directory"
   artifacts:
     baseDirectory: out
     files:
@@ -15,3 +16,17 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
+applications:
+  - frontend:
+      buildPath: /
+      buildSpec: |
+        version: 1
+        frontend:
+          phases:
+            build:
+              commands:
+                - npm run build
+          artifacts:
+            baseDirectory: out
+            files:
+              - '**/*'
